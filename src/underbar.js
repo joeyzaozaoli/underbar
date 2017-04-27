@@ -89,10 +89,11 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var subcollection = _.filter(collection, test)
     for (var i = 0, arr = []; i < collection.length; i++) {
-      if (!test(collection[i])) {
+      if (!subcollection.includes(collection[i])) {
         arr.push(collection[i]);
-      }  
+      }
     }
     return arr;
   };
