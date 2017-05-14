@@ -204,12 +204,8 @@
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
     iterator = iterator || _.identity;
-    var oldIterator = iterator;
-    iterator = function(){
-      return !oldIterator.apply(oldIterator, arguments);
-    };
 
-    if (_.every(collection, iterator)) {
+    if (_.every(collection, function() {return !iterator.apply(this, arguments)})) {
       return false;
     } else {
       return true;
